@@ -51,7 +51,6 @@ if(password_verify($password, $user["password_hash"]) == false){
 }
 
 // step 3: build and sign the JWT
-$secret_key = "change-this-to-a-long-random-string";
 
 $payload = [
     "user_id" => $user["id"],
@@ -59,7 +58,7 @@ $payload = [
     "exp" => time() + (60 * 60 * 24) // expires in 24 hours
 ];
 
-$jwt = JWT::encode($payload, $secret_key, "HS256");
+$jwt = JWT::encode($payload, JWT_SECRET, "HS256");
 
 $response["success"] = true;
 $response["data"] = [];
