@@ -9,7 +9,7 @@ function setupCreateListing() {
   form.addEventListener("submit", function (event) {
     event.preventDefault(); if (!isLoggedIn()) { location.href = "login.html"; return; }
     if (end.value < start.value) { setMessage(message, "The end date must be on or after the start date.", "error"); return; }
-    const button = form.querySelector("button[type=submit]"); button.disabled = true; setMessage(message, "Creating its passport…");
+    const button = form.querySelector("button[type=submit]"); button.disabled = true; setMessage(message, "Generating care notes and creating its passport…");
     postForm("../../server/create-plant.php", { name: form.elements.name.value, species: form.elements.species.value, care_notes: form.elements.care_notes.value })
       .then(function (plantResponse) { if (!plantResponse.success) throw new Error(plantResponse.error || "Could not create plant"); return postForm("../../server/create-sit.php", { plant_id: plantResponse.data.plant_id, start_date: start.value, end_date: end.value }); })
       .then(function (sitResponse) { if (!sitResponse.success) throw new Error(sitResponse.error || "Could not create listing"); setMessage(message, "Passport created and sit listed. It is ready to be claimed!", "success"); form.reset(); start.min = today; end.min = today; })
