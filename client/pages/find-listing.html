@@ -27,35 +27,51 @@
       </nav>
     </header>
     <main class="page-shell">
-      <section class="page-intro">
+      <!-- <section class="page-intro">
         <p class="eyebrow">OPEN ASSIGNMENTS</p>
         <h1>Plants looking for a little company.</h1>
         <p>
           Claiming is first come, first served. Read the care notes, then make
           your mark.
         </p>
-      </section>
+      </section> -->
       <section class="filter-bar card">
-        <label for="filter-region">District</label
-        ><select id="filter-region">
-          <option value="">All districts</option>
-          <option>Beirut</option>
-          <option>Metn</option>
-          <option>Keserwan</option>
-          <option>Baabda</option>
-          <option>Aley</option>
-          <option>Chouf</option>
-          <option>Tripoli</option>
-          <option>Zahle</option>
-          <option>Saida</option>
-          <option>Tyre</option></select
-        ><label for="filter-proximity">Show</label
-        ><select id="filter-proximity">
-          <option value="any">Everywhere</option>
-          <option value="same">Same district</option>
-          <option value="nearby">Nearby districts</option></select
-        ><button id="apply-filter" class="btn btn-secondary" type="button">
-          Apply filter
+        <div class="filter-heading">
+          <p class="eyebrow">FILTERS:</p>
+        </div>
+        <div class="filter-field">
+          <label for="filter-region">District</label
+          ><select id="filter-region">
+            <option value="">All districts</option>
+            <option>Beirut</option>
+            <option>Metn</option>
+            <option>Keserwan</option>
+            <option>Baabda</option>
+            <option>Aley</option>
+            <option>Chouf</option>
+            <option>Tripoli</option>
+            <option>Zahle</option>
+            <option>Saida</option>
+            <option>Tyre</option>
+          </select>
+        </div>
+        <div class="filter-field">
+          <label for="filter-proximity">Distance</label
+          ><select id="filter-proximity">
+            <option value="any">Everywhere</option>
+            <option value="same">Same district</option>
+            <option value="nearby">Nearby districts</option>
+          </select>
+        </div>
+        <div class="filter-field">
+          <label for="filter-sort">Order</label
+          ><select id="filter-sort">
+            <option value="soonest">Starting soonest</option>
+            <option value="recent">Most recently listed</option>
+          </select>
+        </div>
+        <button id="apply-filter" class="btn btn-primary" type="button">
+          Apply filters
         </button>
       </section>
       <p id="listing-message" class="status-message" role="status"></p>

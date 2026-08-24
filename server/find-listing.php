@@ -7,9 +7,12 @@ $response = [];
 // step 1: grab all open sits with plant + owner info
 $region = isset($_GET["region"]) ? trim($_GET["region"]) : "";
 $proximity = isset($_GET["proximity"]) ? trim($_GET["proximity"]) : "any";
+$sort = isset($_GET["sort"]) ? trim($_GET["sort"]) : "soonest";
 if($region != "" && !in_array($region, lebanon_regions(), true)) $region = "";
 if(!in_array($proximity, ["any", "same", "nearby"], true)) $proximity = "any";
+if(!in_array($sort, ["soonest", "recent"], true)) $sort = "soonest";
 $allowed_regions = $proximity == "same" ? [$region] : ($proximity == "nearby" ? nearby_regions($region) : []);
+$order_by = $sort == "recent" ? "s.created_at DESC" : "s.start_date ASC, s.created_at DESC";
 
 $sql = "SELECT s.id AS sit_id, s.start_date, s.end_date, s.created_at,
                p.id AS plant_id, p.name AS plant_name, p.species, p.care_notes,
@@ -18,7 +21,7 @@ $sql = "SELECT s.id AS sit_id, s.start_date, s.end_date, s.created_at,
         JOIN plants p ON p.id = s.plant_id
         JOIN users u ON u.id = p.owner_id
         WHERE s.status = 'open'
-        ORDER BY s.start_date ASC";
+        ORDER BY $order_by";
 
 $query = $mysql->prepare($sql);
 $query->execute();

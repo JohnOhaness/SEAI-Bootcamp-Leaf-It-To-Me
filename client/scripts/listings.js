@@ -27,8 +27,9 @@ function setupFindListings() {
   const grid = document.getElementById("listing-grid"); if (!grid) return; const message = document.getElementById("listing-message");
   const regionSelect = document.getElementById("filter-region");
   const proximitySelect = document.getElementById("filter-proximity");
+  const sortSelect = document.getElementById("filter-sort");
   function loadListings() {
-  const params = new URLSearchParams({ region: regionSelect.value, proximity: proximitySelect.value });
+  const params = new URLSearchParams({ region: regionSelect.value, proximity: proximitySelect.value, sort: sortSelect.value });
   fetch("../../server/find-listing.php?" + params.toString()).then(function (response) { return response.json(); }).then(function (response) {
     if (!response.success) throw new Error(response.error || "Could not load listings"); if (!response.data.length) { grid.innerHTML = '<div class="empty-state">No plants need a sitter right now. Check back soon.</div>'; return; }
     grid.innerHTML = response.data.map(function (listing) { return '<article class="card listing-card"><p class="listing-meta">' + formatDate(listing.start_date) + ' — ' + formatDate(listing.end_date) + '</p><h2><a href="passport.html?plant_id=' + listing.plant_id + '">' + escapeHtml(listing.plant_name) + '</a></h2><p><strong>' + escapeHtml(listing.species || "Unknown species") + '</strong> · listed by ' + escapeHtml(listing.owner_username) + '</p><p class="listing-meta">' + escapeHtml(listing.owner_region) + '</p><p>' + escapeHtml(listing.care_notes || "No care notes added yet.") + '</p><a class="listing-meta" href="passport.html?plant_id=' + listing.plant_id + '">View passport →</a><button class="btn btn-primary claim-button" data-sit-id="' + listing.sit_id + '">Claim this sit</button></article>'; }).join("");
