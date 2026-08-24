@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Find a Sit | Leaf It To Me</title>
+    <title>My Sits | Leaf It To Me</title>
     <link rel="stylesheet" href="../styles/styles.css" />
     <script src="../scripts/auth.js"></script>
-    <script defer src="../scripts/listings.js"></script>
+    <script defer src="../scripts/my-sits.js"></script>
   </head>
   <body>
     <header>
@@ -20,7 +20,7 @@
         >
         <ul class="nav-links">
           <li><a href="create-listing.html">Create</a></li>
-          <li><a href="find-listing.html" class="active">Find</a></li>
+          <li><a href="find-listing.html">Find</a></li>
           <li><a href="login.html">Login</a></li>
           <li><a href="signup.html">Sign Up</a></li>
         </ul>
@@ -28,39 +28,21 @@
     </header>
     <main class="page-shell">
       <section class="page-intro">
-        <p class="eyebrow">OPEN ASSIGNMENTS</p>
-        <h1>Plants looking for a little company.</h1>
+        <p class="eyebrow">YOUR DESK</p>
+        <h1>My sits</h1>
         <p>
-          Claiming is first come, first served. Read the care notes, then make
-          your mark.
+          Keep tabs on your listings and leave a final care note after each
+          visit.
         </p>
       </section>
-      <section class="filter-bar card">
-        <label for="filter-region">District</label
-        ><select id="filter-region">
-          <option value="">All districts</option>
-          <option>Beirut</option>
-          <option>Metn</option>
-          <option>Keserwan</option>
-          <option>Baabda</option>
-          <option>Aley</option>
-          <option>Chouf</option>
-          <option>Tripoli</option>
-          <option>Zahle</option>
-          <option>Saida</option>
-          <option>Tyre</option></select
-        ><label for="filter-proximity">Show</label
-        ><select id="filter-proximity">
-          <option value="any">Everywhere</option>
-          <option value="same">Same district</option>
-          <option value="nearby">Nearby districts</option></select
-        ><button id="apply-filter" class="btn btn-secondary" type="button">
-          Apply filter
-        </button>
+      <p id="my-sits-message" class="status-message" role="status"></p>
+      <section>
+        <h2>Plants I listed</h2>
+        <div id="owned-sits" class="listing-grid"></div>
       </section>
-      <p id="listing-message" class="status-message" role="status"></p>
-      <section id="listing-grid" class="listing-grid" aria-live="polite">
-        <div class="empty-state">Opening the greenhouse…</div>
+      <section class="dashboard-section">
+        <h2>Sits I claimed</h2>
+        <div id="claimed-sits" class="listing-grid"></div>
       </section>
     </main>
     <footer class="site-footer">

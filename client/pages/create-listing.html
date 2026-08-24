@@ -3,53 +3,104 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Leaf It To Me - Create Listing</title>
+    <title>List a Plant | Leaf It To Me</title>
     <link rel="stylesheet" href="../styles/styles.css" />
     <script src="../scripts/auth.js"></script>
+    <script defer src="../scripts/listings.js"></script>
   </head>
   <body>
     <header>
       <nav class="navbar">
-        <a href="../index.html" class="nav-brand">
-          <img
-            src="../images/logo-placeholder.svg"
+        <a href="../index.html" class="nav-brand"
+          ><img
+            src="../images/leaf-logo.png"
             alt="Leaf It To Me logo"
             class="nav-logo"
-          />
-          <span class="nav-title">Leaf It To Me</span>
-        </a>
-
+          /><span class="nav-title">Leaf It To Me</span></a
+        >
         <ul class="nav-links">
-          <li>
-            <a href="create-listing.html" class="active">Create</a>
-          </li>
+          <li><a href="create-listing.html" class="active">Create</a></li>
           <li><a href="find-listing.html">Find</a></li>
           <li><a href="login.html">Login</a></li>
           <li><a href="signup.html">Sign Up</a></li>
         </ul>
       </nav>
     </header>
-    <main></main>
+    <main class="page-shell">
+      <section class="page-intro">
+        <p class="eyebrow">OWNER'S DESK</p>
+        <h1>Give a plant a temporary guardian.</h1>
+        <p>
+          Start its passport and post the dates it needs a friendly check-in.
+        </p>
+      </section>
+      <section class="card form-card">
+        <p id="create-message" class="form-message" role="status"></p>
+        <form id="create-listing-form">
+          <div>
+            <label for="name">Plant name</label
+            ><input
+              id="name"
+              name="name"
+              maxlength="100"
+              placeholder="e.g. Mabel"
+              required
+            />
+          </div>
+          <div>
+            <label for="species">Species (optional)</label
+            ><input
+              id="species"
+              name="species"
+              maxlength="100"
+              placeholder="e.g. Monstera deliciosa"
+            />
+          </div>
+          <div>
+            <label for="care_notes">Care notes (optional)</label
+            ><textarea
+              id="care_notes"
+              name="care_notes"
+              rows="4"
+              placeholder="Water lightly, keep out of direct afternoon sun…"
+            ></textarea>
+            <p class="form-hint">
+              AI care guidance will be added later; your own notes are welcome
+              now.
+            </p>
+          </div>
+          <div>
+            <label for="start_date">Sit starts</label
+            ><input id="start_date" name="start_date" type="date" required />
+          </div>
+          <div>
+            <label for="end_date">Sit ends</label
+            ><input id="end_date" name="end_date" type="date" required />
+          </div>
+          <button type="submit">Stamp this listing</button>
+        </form>
+      </section>
+    </main>
     <footer class="site-footer">
       <div class="footer-content">
         <p class="footer-copyright">
           &copy; 2026 Leaf It To Me. All rights reserved.
         </p>
-
         <div class="footer-socials">
           <a
             href="https://instagram.com"
             target="_blank"
             rel="noopener noreferrer"
             >Instagram</a
-          >
-          <a
+          ><a
             href="https://facebook.com"
             target="_blank"
             rel="noopener noreferrer"
             >Facebook</a
-          >
-          <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer"
+          ><a
+            href="https://tiktok.com"
+            target="_blank"
+            rel="noopener noreferrer"
             >TikTok</a
           >
         </div>

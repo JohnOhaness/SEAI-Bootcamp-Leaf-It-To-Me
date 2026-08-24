@@ -3,50 +3,65 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Leaf It To Me - Sign Up</title>
+    <title>Sign up | Leaf It To Me</title>
     <link rel="stylesheet" href="../styles/styles.css" />
     <script src="../scripts/auth.js"></script>
   </head>
   <body>
     <header>
       <nav class="navbar">
-        <a href="../index.html" class="nav-brand">
-          <img
-            src="../images/logo-placeholder.svg"
+        <a href="../index.html" class="nav-brand"
+          ><img
+            src="../images/leaf-logo.png"
             alt="Leaf It To Me logo"
             class="nav-logo"
-          />
-          <span class="nav-title">Leaf It To Me</span>
-        </a>
-
+          /><span class="nav-title">Leaf It To Me</span></a
+        >
         <ul class="nav-links">
           <li><a href="create-listing.html">Create</a></li>
           <li><a href="find-listing.html">Find</a></li>
           <li><a href="login.html">Login</a></li>
-          <li>
-            <a href="signup.html" class="active">Sign Up</a>
-          </li>
+          <li><a href="signup.html" class="active">Sign Up</a></li>
         </ul>
       </nav>
     </header>
-    <main>
-      <div>
-        <h1>Sign Up</h1>
-        <p id="signup-message" class="form-message"></p>
+    <main class="page-shell auth-page">
+      <div class="card form-card auth-card">
+        <h1>Sign up</h1>
+        <p id="signup-message" class="form-message" role="status"></p>
         <form id="signup-form">
           <div>
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" required />
+            <label for="username">Username</label
+            ><input type="text" id="username" name="username" required />
           </div>
           <div>
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required />
+            <label for="email">Email</label
+            ><input type="email" id="email" name="email" required />
           </div>
           <div>
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required />
+            <label for="password">Password</label
+            ><input type="password" id="password" name="password" required />
           </div>
-          <button type="submit">Sign Up</button>
+          <div>
+            <label for="region">Lebanese district</label
+            ><select id="region" name="region" required>
+              <option value="">Choose your district</option>
+              <option>Beirut</option>
+              <option>Metn</option>
+              <option>Keserwan</option>
+              <option>Baabda</option>
+              <option>Aley</option>
+              <option>Chouf</option>
+              <option>Tripoli</option>
+              <option>Zahle</option>
+              <option>Saida</option>
+              <option>Tyre</option>
+            </select>
+          </div>
+          <button type="submit">Sign up</button>
+          <p class="auth-switch">
+            Already have an account? <a href="login.html">Log in</a>
+          </p>
         </form>
       </div>
     </main>
@@ -55,17 +70,14 @@
         .getElementById("signup-form")
         .addEventListener("submit", function (e) {
           e.preventDefault();
-
           const messageEl = document.getElementById("signup-message");
           messageEl.textContent = "";
-
-          const formData = {
+          postForm("../../server/signup.php", {
             username: document.getElementById("username").value,
             email: document.getElementById("email").value,
             password: document.getElementById("password").value,
-          };
-
-          postForm("../../server/signup.php", formData)
+            region: document.getElementById("region").value,
+          })
             .then(function (res) {
               if (res.success) {
                 messageEl.textContent =
@@ -90,24 +102,6 @@
         <p class="footer-copyright">
           &copy; 2026 Leaf It To Me. All rights reserved.
         </p>
-
-        <div class="footer-socials">
-          <a
-            href="https://instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Instagram</a
-          >
-          <a
-            href="https://facebook.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Facebook</a
-          >
-          <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer"
-            >TikTok</a
-          >
-        </div>
       </div>
     </footer>
   </body>

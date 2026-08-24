@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile | Leaf It To Me</title>
+    <link rel="stylesheet" href="../styles/styles.css" />
+    <script src="../scripts/auth.js"></script>
+    <script defer src="../scripts/profile.js"></script>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <a href="../index.html" class="nav-brand"
+          ><img
+            src="../images/leaf-logo.png"
+            alt="Leaf It To Me logo"
+            class="nav-logo"
+          /><span class="nav-title">Leaf It To Me</span></a
+        >
+        <ul class="nav-links">
+          <li><a href="create-listing.html">Create</a></li>
+          <li><a href="find-listing.html">Find</a></li>
+          <li><a href="login.html">Login</a></li>
+          <li><a href="signup.html">Sign Up</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main class="page-shell">
+      <section class="page-intro">
+        <p class="eyebrow">YOUR DETAILS</p>
+        <h1>Profile</h1>
+        <p>Your district helps sitters find plants close to them.</p>
+      </section>
+      <section class="card form-card">
+        <p id="profile-message" class="form-message" role="status"></p>
+        <form id="profile-form">
+          <div>
+            <label>Username</label><input id="profile-username" disabled />
+          </div>
+          <div><label>Email</label><input id="profile-email" disabled /></div>
+          <div>
+            <label for="profile-region">Lebanese district</label
+            ><select id="profile-region" required>
+              <option value="">Choose your district</option>
+              <option>Beirut</option>
+              <option>Metn</option>
+              <option>Keserwan</option>
+              <option>Baabda</option>
+              <option>Aley</option>
+              <option>Chouf</option>
+              <option>Tripoli</option>
+              <option>Zahle</option>
+              <option>Saida</option>
+              <option>Tyre</option>
+            </select>
+          </div>
+          <button type="submit">Save district</button>
+        </form>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="footer-content">
+        <p class="footer-copyright">
+          &copy; 2026 Leaf It To Me. All rights reserved.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

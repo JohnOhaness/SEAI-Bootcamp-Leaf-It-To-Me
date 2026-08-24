@@ -30,9 +30,13 @@ function isLoggedIn() {
 
 // POST an object as application/x-www-form-urlencoded (matches $_POST on the PHP side)
 function postForm(endpoint, data) {
+  const headers = { "Content-Type": "application/x-www-form-urlencoded" };
+  const token = getToken();
+  if (token) headers.Authorization = "Bearer " + token;
+
   return fetch(endpoint, {
     method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    headers: headers,
     body: new URLSearchParams(data).toString(),
   }).then(function (res) {
     return res.json();
@@ -56,6 +60,20 @@ function updateNav() {
 
   if (isLoggedIn()) {
     const username = getUsername();
+
+    const sitsLi = document.createElement("li");
+    const sitsLink = document.createElement("a");
+    sitsLink.href = location.pathname.indexOf("/pages/") !== -1 ? "my-sits.html" : "pages/my-sits.html";
+    sitsLink.textContent = "My Sits";
+    sitsLi.appendChild(sitsLink);
+    loginLi.parentElement.insertBefore(sitsLi, loginLi);
+
+    const profileLi = document.createElement("li");
+    const profileLink = document.createElement("a");
+    profileLink.href = location.pathname.indexOf("/pages/") !== -1 ? "profile.html" : "pages/profile.html";
+    profileLink.textContent = "Profile";
+    profileLi.appendChild(profileLink);
+    loginLi.parentElement.insertBefore(profileLi, loginLi);
 
     loginLi.innerHTML = "";
     const greeting = document.createElement("span");

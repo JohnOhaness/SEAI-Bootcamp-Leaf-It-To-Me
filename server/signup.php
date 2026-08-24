@@ -1,5 +1,6 @@
 <?php
 include("connection.php");
+include_once("regions.php");
 
 $response = [];
 
@@ -21,10 +22,19 @@ if(isset($_POST["password"])){
     $password = "";
 }
 
+$region = isset($_POST["region"]) ? trim($_POST["region"]) : "";
+
 // basic validation
-if($username == "" || $email == "" || $password == ""){
+if($username == "" || $email == "" || $password == "" || $region == ""){
     $response["success"] = false;
     $response["error"] = "all fields are required";
+    echo json_encode($response);
+    exit;
+}
+
+if(!in_array($region, lebanon_regions(), true)){
+    $response["success"] = false;
+    $response["error"] = "please choose a valid Lebanese district";
     echo json_encode($response);
     exit;
 }
@@ -67,9 +77,9 @@ if($email_result->num_rows > 0){
 // step 3: hash the password and insert
 $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
-$sql3 = "INSERT INTO users (username, email, password_hash) VALUES (?, ?, ?)";
+$sql3 = "INSERT INTO users (username, email, region, password_hash) VALUES (?, ?, ?, ?)";
 $query3 = $mysql->prepare($sql3);
-$query3->bind_param("sss", $username, $email, $password_hash);
+$query3->bind_param("ssss", $username, $email, $region, $password_hash);
 $query3->execute();
 
 $response["success"] = true;
