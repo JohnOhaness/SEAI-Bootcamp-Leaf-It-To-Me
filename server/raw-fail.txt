@@ -1,0 +1,1 @@
+{"success":true,"data":{"plant_id":5,"message":"plant registered"}}</｜DSML｜>
