@@ -59,7 +59,7 @@
             .then(function (response) {
               if (response.success) {
                 setSession(response.data.token, response.data.username);
-                messageEl.textContent = "Logged in! Redirecting...";
+                messageEl.textContent = "Logged in. Redirecting…";
                 messageEl.className = "form-message form-success";
                 setTimeout(function () {
                   location.href = "../index.html";
