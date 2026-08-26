@@ -323,17 +323,76 @@ main {
 .passport-preview h2 {
   font-size: var(--text-2xl);
 }
+/* ============================================
+   Passport Stamp & Layout Fix
+   ============================================ */
+
+.passport-record {
+  position: relative;
+  overflow: hidden;
+  max-width: 720px;
+  padding: var(--space-12);
+  padding-bottom: var(
+    --space-16
+  ); /* Extra bottom room so text never hits the stamp */
+  background: #fffdf5;
+  border: 1px solid #d5cdb9;
+  box-shadow: var(--shadow-paper-lifted);
+}
+
+.passport-record::before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border: 1px dashed #c9c2ad;
+  pointer-events: none;
+}
+
+/* Ensure text inside sits above background elements but below the stamp */
+.passport-record > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* The Stamp — Authentic double-border postal stamp */
 .passport-stamp {
   position: absolute;
-  right: 1.5rem;
-  bottom: 1.5rem;
-  padding: 0.6rem;
-  border: 3px solid var(--stamp-ink);
+  right: 2rem;
+  bottom: 2rem;
+  z-index: 2;
+  pointer-events: none; /* Prevents blocking text selection */
+  user-select: none;
+
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.5rem 0.9rem;
+  border: 2.5px solid var(--stamp-ink);
+  outline: 1.5px dashed var(--stamp-ink);
+  outline-offset: 3px;
+  border-radius: 2px;
+
   color: var(--stamp-ink);
-  font: 700 var(--text-sm)/1 var(--font-mono);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
   text-align: center;
-  transform: rotate(-12deg);
+  white-space: nowrap;
+
+  transform: rotate(-10deg);
   opacity: 0.85;
+  mix-blend-mode: multiply; /* Blends naturally onto the paper like real ink */
+  transition: transform var(--duration-fast) var(--ease-stamp);
+}
+
+/* Optional: Subtle stamp hover response if card is interacted with */
+.passport-record:hover .passport-stamp {
+  transform: rotate(-8deg) scale(1.03);
 }
 .how-it-works {
   max-width: 1080px;
