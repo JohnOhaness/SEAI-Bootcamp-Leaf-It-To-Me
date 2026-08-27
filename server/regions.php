@@ -1,5 +1,4 @@
 <?php
-// A deliberately small, demo-friendly set of Lebanese districts.
 function lebanon_regions(){
     return ["Beirut", "Metn", "Keserwan", "Baabda", "Aley", "Chouf", "Tripoli", "Zahle", "Saida", "Tyre"];
 }

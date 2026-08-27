@@ -24,7 +24,6 @@ if(isset($_POST["password"])){
 
 $region = isset($_POST["region"]) ? trim($_POST["region"]) : "";
 
-// basic validation
 if($username == "" || $email == "" || $password == "" || $region == ""){
     $response["success"] = false;
     $response["error"] = "all fields are required";
@@ -46,7 +45,6 @@ if(strlen($password) < 8){
     exit;
 }
 
-// step 1: is the username already taken?
 $sql = "SELECT * FROM users WHERE username = ?";
 $query = $mysql->prepare($sql);
 $query->bind_param("s", $username);
@@ -60,7 +58,6 @@ if($username_result->num_rows > 0){
     exit;
 }
 
-// step 2: is the email already taken?
 $sql2 = "SELECT * FROM users WHERE email = ?";
 $query2 = $mysql->prepare($sql2);
 $query2->bind_param("s", $email);
@@ -74,7 +71,6 @@ if($email_result->num_rows > 0){
     exit;
 }
 
-// step 3: hash the password and insert
 $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
 $sql3 = "INSERT INTO users (username, email, region, password_hash) VALUES (?, ?, ?, ?)";
