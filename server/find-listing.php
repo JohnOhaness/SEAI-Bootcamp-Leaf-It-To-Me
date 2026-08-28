@@ -4,7 +4,6 @@ include_once("regions.php");
 
 $response = [];
 
-// step 1: grab all open sits with plant + owner info
 $region = isset($_GET["region"]) ? trim($_GET["region"]) : "";
 $proximity = isset($_GET["proximity"]) ? trim($_GET["proximity"]) : "any";
 $sort = isset($_GET["sort"]) ? trim($_GET["sort"]) : "soonest";

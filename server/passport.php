@@ -8,7 +8,6 @@ error_reporting(E_ALL);
 $response = ["success" => false];
 
 try {
-    // 1. Database connection
     $conn_path = __DIR__ . '/connection.php';
     if (!file_exists($conn_path)) {
         throw new Exception("connection.php file not found.");
@@ -20,7 +19,6 @@ try {
         throw new Exception("Database connection variable (\$mysql / \$conn) is not initialized.");
     }
 
-    // 2. Validate plant_id parameter
     $plant_id = isset($_GET["plant_id"]) ? intval($_GET["plant_id"]) : 0;
     if ($plant_id <= 0) {
         http_response_code(400);

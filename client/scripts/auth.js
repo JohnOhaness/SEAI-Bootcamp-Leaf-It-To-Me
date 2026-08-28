@@ -1,6 +1,3 @@
-// client/scripts/auth.js — shared session helpers + auth nav state
-// Uses localStorage + fetch (no CDN, no Axios required).
-
 const LEAF_TOKEN_KEY = "leaf_token";
 const LEAF_USERNAME_KEY = "leaf_username";
 
@@ -28,7 +25,6 @@ function isLoggedIn() {
   return getToken() !== null;
 }
 
-// POST an object as application/x-www-form-urlencoded (matches $_POST on the PHP side)
 function postForm(endpoint, data) {
   const headers = { "Content-Type": "application/x-www-form-urlencoded" };
   const token = getToken();
@@ -63,14 +59,20 @@ function updateNav() {
 
     const sitsLi = document.createElement("li");
     const sitsLink = document.createElement("a");
-    sitsLink.href = location.pathname.indexOf("/pages/") !== -1 ? "my-sits.html" : "pages/my-sits.html";
+    sitsLink.href =
+      location.pathname.indexOf("/pages/") !== -1
+        ? "my-sits.html"
+        : "pages/my-sits.html";
     sitsLink.textContent = "My Sits";
     sitsLi.appendChild(sitsLink);
     loginLi.parentElement.insertBefore(sitsLi, loginLi);
 
     const profileLi = document.createElement("li");
     const profileLink = document.createElement("a");
-    profileLink.href = location.pathname.indexOf("/pages/") !== -1 ? "profile.html" : "pages/profile.html";
+    profileLink.href =
+      location.pathname.indexOf("/pages/") !== -1
+        ? "profile.html"
+        : "pages/profile.html";
     profileLink.textContent = "Profile";
     profileLi.appendChild(profileLink);
     loginLi.parentElement.insertBefore(profileLi, loginLi);
@@ -87,7 +89,6 @@ function updateNav() {
     logoutBtn.textContent = "Logout";
     logoutBtn.addEventListener("click", function () {
       clearSession();
-      // pages under client/pages/ are one level deeper than client/index.html
       const fromPages = location.pathname.indexOf("/pages/") !== -1;
       location.href = fromPages ? "../index.html" : "index.html";
     });
@@ -97,7 +98,6 @@ function updateNav() {
   }
 }
 
-// run once the DOM is ready (works whether the script is in <head> or at the end of body)
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", updateNav);
 } else {

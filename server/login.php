@@ -26,7 +26,6 @@ if($username == "" || $password == ""){
     exit;
 }
 
-// step 1: find the user
 $sql = "SELECT * FROM users WHERE username = ?";
 $query = $mysql->prepare($sql);
 $query->bind_param("s", $username);
@@ -42,15 +41,12 @@ if($result->num_rows == 0){
 
 $user = $result->fetch_assoc();
 
-// step 2: check the password against the stored hash
 if(password_verify($password, $user["password_hash"]) == false){
     $response["success"] = false;
     $response["error"] = "invalid username or password";
     echo json_encode($response);
     exit;
 }
-
-// step 3: build and sign the JWT
 
 $payload = [
     "user_id" => $user["id"],
